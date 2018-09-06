@@ -63,6 +63,8 @@ Finally assign the Administrator Role to your user account.
 
 ![Attach Role to User](./preview-attachuser.png)
 
+![Roles index with User count](./preview-roles.png)
+
 **Note:** By default, the package allows anyone access to a permission if no single user has access to it. This is to prevent you from locking yourself out of features. As such, it is important to define your primary admin role which has access to all permissions, meaning nobody else has access unless you specifically grant it.
 
 ## Default Permissions
