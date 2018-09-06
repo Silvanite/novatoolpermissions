@@ -28,6 +28,20 @@ Run the migrations to add the database tables required by Brandenburg.
 php artisan migrate
 ```
 
+Add the `HasRoles` trait to your User model as per the Brandenburg instllation instructions.
+
+```php
+// app/User.php
+
+use Silvanite\Brandenburg\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use HasRoles;
+    ...
+}
+```
+
 Load it into your Nova Tools to display the Roles within your Resources
 
 ```php
