@@ -1,0 +1,31 @@
+{
+    "name": "silvanite/novatoolpermissions",
+    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
+    "type": "boilerplate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Mark",
+            "email": "m2de@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.0.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": ">=3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Silvanite\\NovaToolPermissions\\": "src-php/"
+        }
+    },
+    "extra":{
+        "laravel": {
+            "providers": [
+                "Silvanite\\NovaToolPermissions\\Providers\\PackageServiceProvider"
+            ]
+        }
+    }
+}

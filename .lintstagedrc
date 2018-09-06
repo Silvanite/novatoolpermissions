@@ -1,0 +1,20 @@
+{
+    "*.php": [
+        "./vendor/bin/phpcs"
+    ],
+    "*.js": [
+        "eslint"
+    ],
+    "*.vue": [
+        "eslint"
+    ],
+    "*.md": [
+        "markdownlint"
+    ],
+    "*.json": [
+        "jsonlint"
+    ],
+    ".*rc": [
+        "jsonlint"
+    ]
+}

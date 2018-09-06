@@ -1,0 +1,45 @@
+{
+    "name": "@silvanite/novatoolpermissions",
+    "version": "1.0.0",
+    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
+    "main": "dist-js/index.js",
+    "scripts": {
+        "build": "rollup -c",
+        "watch": "rollup -mwc",
+        "precommit": "lint-staged",
+        "prepublish": "npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/silvanite/novatoolpermissions.git"
+    },
+    "keywords": [
+        "boilerplate"
+    ],
+    "author": "Marco Mark <m2de@outlook.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/silvanite/novatoolpermissions/issues"
+    },
+    "homepage": "https://github.com/silvanite/novatoolpermissions#readme",
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^8.2.6",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-es2015-rollup": "^3.0.0",
+        "eslint": "^5.1.0",
+        "eslint-config-airbnb-base": "^13.0.0",
+        "eslint-plugin-import": "^2.13.0",
+        "eslint-plugin-vue": "^4.7.0",
+        "husky": "^0.14.3",
+        "jsonlint": "^1.6.3",
+        "lint-staged": "^7.2.0",
+        "markdownlint-cli": "^0.11.0",
+        "rollup": "^0.63.2",
+        "rollup-plugin-babel": "^3.0.7",
+        "rollup-plugin-vue": "^4.3.1",
+        "vue-template-compiler": "^2.5.16"
+    },
+    "dependencies": {}
+}

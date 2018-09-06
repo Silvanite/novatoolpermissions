@@ -1,0 +1,33 @@
+{
+    "rules": {
+        "semi": [
+            "error",
+            "never"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "no-console": 1,
+        "radix": 0,
+        "vue/html-indent": ["error", 4]
+    },
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "impliedStrict": true
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:vue/recommended",
+        "airbnb-base"
+    ],
+    "plugins": [
+        "vue"
+    ]
+}
