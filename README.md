@@ -1,11 +1,182 @@
-# Boilerplate repository for creating PHP Laravel and JS Vue NPM Packages
+# Laravel Nova Permissions (Roles and Permission based Access Control (ACL))
 
-This boilderplate is ready to be published to Packagist and NPM JS.
+Add Access Control by means of User based Roles and Permissions to your Nova installation. Includes default User and Role Policies which can be managed through your Nova Admin Panel.
 
-## Usage
+![Tool Demo](./preview-demo.gif)
 
-Simply fork this repository and customise. Search and Replace (case-sensitive) `Silvanite` and `NovaToolPermissions` as well as `silvanite` and `novatoolpermissions` to get started.
+This tool uses the [Silvanite\Brandenburg](https://github.com/Silvanite/brandenburg) package under the hood to manage user roles. Brandenburg is used because it has clear separation of concerns
 
-## Publishing
+> *Roles* are defined in the *Database*
 
-Always use `npm version (major|minor|patch)` to publish new versions (even when working with PHP). This will automatically create the git tag for you which Packagist will then pick up for version publishing.
+and
+
+> *Permissions* are defined in the *Codebase*
+
+As a result, you won't see any *Permissions* resource. The *Roles* resource will get the permissions from the Gates defined in your code.
+
+## Installation
+
+Install the tool through composer
+
+```sh
+composer require silvanite/novatoolpermissions
+```
+
+Load it into your Nova Tools to display the Roles within your Resources
+
+```php
+// app/Providers/NovaServiceProvider.php
+
+use Silvanite\NovaToolPermissions\NovaToolPermissions;
+
+public function tools()
+    {
+        return [
+            new NovaToolPermissions(),
+        ];
+    }
+```
+
+You can assign Users to Roles from the Role resource, however if you want to assign Roles from your User resource you will need to add an additional relationship ...
+
+```php
+// app/Nova/User.php
+
+use Silvanite\NovaToolPermissions\Role;
+
+public function fields(Request $request)
+{
+    return [
+        ...
+        BelongsToMany::make('Roles', 'roles', Role::class),
+    ];
+}
+```
+
+## Usage
+
+Once installed, go ahead and create your first Role. E.g. `Administrator` and assign all permissions to your new Role.
+
+![Create/Edit Roles](./preview-addrole.png)
+
+Finally assign the Administrator Role to your user account.
+
+![Attach Role to User](./preview-attachuser.png)
+
+**Note:** By default, the package allows anyone access to a permission if no single user has access to it. This is to prevent you from locking yourself out of features. As such, it is important to define your primary admin role which has access to all permissions, meaning nobody else has access unless you specifically grant it.
+
+## Default Permissions
+
+This package comes with a set of default permissions to provide full access control to the package's functionality. Permissions come with default english translations to provide a better user experience. You are free to replace these with translations in your applications json translations.
+
+```json
+{
+    "viewNova": "Access Nova",
+    "viewRoles": "View Roles",
+    "manageRoles": "Manage Roles",
+    "assignRoles": "Assign Roles",
+    "viewUsers": "View Users",
+    "manageUsers": "Manage Users"
+}
+```
+
+## Custom permissions
+
+To create your own permissions, simply define them in your service provider and create a *Policy* for your resource/model. Let's work with a common *Blog* example and assume that you have a **Blog** Model and Resource in your application.
+
+Create a *Policy* for your Nova Resource
+
+Create a new policy for your blog
+
+```sh
+php artisan make:policy BlogPolicy
+```
+
+Let's assign the Policy and define our Gates.
+
+```php
+// app/Providers/AuthServiceProvider.php
+
+use Silvanite\Brandenburg\Traits\ValidatesPermissions;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    use ValidatesPermissions;
+
+    protected $policies = [
+        \App\Blog::class => \App\Policies\BlogPolicy::class,
+    ];
+
+    public function boot()
+    {
+        collect([
+            'viewBlog',
+            'manageBlog',
+        ])->each(function ($permission) {
+            Gate::define($permission, function ($user) use ($permission) {
+                if ($this->nobodyHasAccess($permission)) {
+                    return true;
+                }
+
+                return $user->hasRoleWithPermission($permission);
+            });
+        });
+    }
+}
+```
+
+Finally, specify the access control in your Policy as per the Nova documentation.
+
+```php
+// app/Policies/Blog.php
+
+public function viewAny($user)
+{
+    return Gate::any(['viewBlog', 'manageBlog'], $user, $post);
+}
+
+public function view($user, $post)
+{
+    return Gate::any(['viewBlog', 'manageBlog'], $user, $post);
+}
+
+public function create($user)
+{
+    return $user->can('manageBlog');
+}
+
+public function update($user, $post)
+{
+    return $user->can('manageBlog', $post);
+}
+
+public function delete($user, $post)
+{
+    return $user->can('manageBlog', $post);
+}
+
+public function restore($user, $post)
+{
+    return $user->can('manageBlog', $post);
+}
+
+public function forceDelete($user, $post)
+{
+    return $user->can('manageBlog', $post);
+}
+```
+
+And add your labels to your translations to keep everything tidy.
+
+```json
+{
+    "viewBlog": "View Blog",
+    "manageBlog": "Manage Blog"
+}
+```
+
+This example is a super-simple implementation. You can define your Gates as in any standard Laravel Application and can simply add the additional checks to validate them against your assigned Roles and Permissions.
+
+## Support
+
+If you require any support please contact me on [Twitter](https://twitter.com/m2de_io) or open an issue on this repository.
