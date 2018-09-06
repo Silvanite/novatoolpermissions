@@ -14,11 +14,8 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->bootViews();
-        $this->bootAssets();
         $this->bootCommands();
-        $this->publishDatabaseFiles();
-        $this->registerMiddleware();
+        $this->loadTranslations();
     }
 
     /**
@@ -45,60 +42,8 @@ class PackageServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Load custom views
-     *
-     * @return void
-     */
-    private function bootViews()
+    private function loadTranslations()
     {
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'silvanite');
-        $this->publishes([
-            __DIR__.'/../Resources/views' => resource_path('views/vendor/silvanite'),
-        ]);
-    }
-
-    /**
-     * Define publishable assets
-     *
-     * @return void
-     */
-    private function bootAssets()
-    {
-        $this->publishes([
-            __DIR__.'/../Resources/assets/js' => resource_path('assets/js/vendor/silvanite'),
-        ], 'js');
-    }
-
-    /**
-     * Make middleware available to routes
-     *
-     * @param Router $router
-     * @return void
-     */
-    private function registerMiddleware(Router $router)
-    {
-        // $router->aliasMiddleware('name', MyMiddleware::class);
-    }
-
-    private function publishDatabaseFiles()
-    {
-        $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
-
-        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
-            __DIR__ . '/../Database/factories'
-        );
-
-        $this->publishes([
-            __DIR__ . '/../Database/factories' => base_path('database/factories')
-        ], 'factories');
-
-        $this->publishes([
-            __DIR__ . '/../Database/migrations' => base_path('database/migrations')
-        ], 'migrations');
-
-        $this->publishes([
-            __DIR__ . '/../Database/seeds' => base_path('database/seeds')
-        ], 'seeds');
+        $this->loadJSONTranslationsFrom(__DIR__.'/../Resources/lang', 'novatoolpermissions');
     }
 }
