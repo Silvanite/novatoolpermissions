@@ -22,6 +22,12 @@ Install the tool through composer
 composer require silvanite/novatoolpermissions
 ```
 
+Run the migrations to add the database tables required by Brandenburg.
+
+```sh
+php artisan migrate
+```
+
 Load it into your Nova Tools to display the Roles within your Resources
 
 ```php
