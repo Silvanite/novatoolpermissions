@@ -1,7 +1,7 @@
 {
     "name": "@silvanite/novatoolpermissions",
     "version": "1.0.0",
-    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
+    "description": "Laravel Nova Permissions (Roles and Permission based Access Control (ACL))",
     "main": "dist-js/index.js",
     "scripts": {
         "build": "rollup -c",

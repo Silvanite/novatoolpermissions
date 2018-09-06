@@ -1,7 +1,19 @@
 {
     "name": "silvanite/novatoolpermissions",
-    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
-    "type": "boilerplate",
+    "description": "Laravel Nova Permissions (Roles and Permission based Access Control (ACL))",
+    "keywords": [
+        "laravel",
+        "nova",
+        "tool",
+        "acl",
+        "roles",
+        "permissions",
+        "access control",
+        "gates",
+        "policies",
+        "authentication",
+        "authorization"
+    ],
     "license": "MIT",
     "authors": [
         {
