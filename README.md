@@ -123,6 +123,8 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->hasRoleWithPermission($permission);
             });
         });
+
+        $this->registerPolicies();
     }
 }
 ```
