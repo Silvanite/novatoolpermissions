@@ -43,6 +43,7 @@ class AuthServiceProvider extends ServiceProvider
             'manageUsers',
             'viewRoles',
             'viewUsers',
+            'viewNova',
         ])->each(function ($permission) {
             Gate::define($permission, function ($user) use ($permission) {
                 if ($this->nobodyHasAccess($permission)) {

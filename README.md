@@ -53,6 +53,18 @@ public function fields(Request $request)
 }
 ```
 
+Remove the default `viewNova` Gate to use the Gate included by this package. You will need to keep the gate() method in place, just empty it.
+Note: Nova will always allow access in development environments.
+
+```php
+// app/Providers/NovaServiceProvider.php
+
+protected function gate()
+{
+    //
+}
+```
+
 ## Usage
 
 Once installed, go ahead and create your first Role. E.g. `Administrator` and assign all permissions to your new Role.
