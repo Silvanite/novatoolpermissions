@@ -12,9 +12,9 @@ class PackageServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $this->bootCommands();
+        $this->publishConfigs();
         $this->loadTranslations();
     }
 
@@ -25,25 +25,35 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            $this->getConfigsPath(),
+            'novatoolpermissions'
+        );
     }
 
     /**
-     * Register the artisan packages' terminal commands
-     *
+     * Publish configuration file.
+	 *
      * @return void
      */
-    private function bootCommands()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                // MyCommand::class,
-            ]);
-        }
+    private function publishConfigs() {
+        $this->publishes([
+            $this->getConfigsPath() => config_path('novatoolpermissions.php'),
+        ], 'config');
     }
 
     private function loadTranslations()
     {
         $this->loadJSONTranslationsFrom(__DIR__.'/../Resources/lang', 'novatoolpermissions');
+    }
+
+    /**
+     * Get local package configuration path.
+     *
+     * @return string
+     */
+    private function getConfigsPath()
+    {
+        return __DIR__.'/../Configs/novatoolpermissions.php';
     }
 }
