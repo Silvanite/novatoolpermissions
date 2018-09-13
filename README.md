@@ -28,7 +28,7 @@ Run the migrations to add the database tables required by Brandenburg.
 php artisan migrate
 ```
 
-Add the `HasRoles` trait to your User model as per the Brandenburg instllation instructions.
+Add the `HasRoles` trait to your User model as per the Brandenburg installation instructions.
 
 ```php
 // app/User.php
