@@ -56,21 +56,41 @@ class Role extends Resource
     {
         return [
             ID::make()->sortable(),
-            TextWithSlug::make('Name')->sortable()->slug('Slug'),
-            Slug::make('Slug')->sortable(),
+            TextWithSlug::make(__('Name'), 'name')->sortable()->slug(__('Slug')),
+            Slug::make(__('Slug'), 'slug')->sortable(),
 
-            Checkboxes::make('Permissions')->options(collect(Policy::all())->mapWithKeys(function ($policy) {
+            Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())->mapWithKeys(function ($policy) {
                 return [
                     $policy => __($policy),
                 ];
             })->sort()->toArray()),
 
-            Text::make('Users', function () {
+            Text::make(__('Users'), function () {
                 return count($this->users);
             })->onlyOnIndex(),
 
-            BelongsToMany::make('Users', 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))->searchable(),
+            BelongsToMany::make(__('Users'), 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))->searchable(),
         ];
+    }
+
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return __('Roles');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Role');
     }
 
     /**
