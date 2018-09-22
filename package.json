@@ -1,6 +1,6 @@
 {
     "name": "@silvanite/novatoolpermissions",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Laravel Nova Permissions (Roles and Permission based Access Control (ACL))",
     "main": "dist-js/index.js",
     "scripts": {
