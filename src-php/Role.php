@@ -56,8 +56,9 @@ class Role extends Resource
     {
         return [
             ID::make()->sortable(),
+
             TextWithSlug::make(__('Name'), 'name')->sortable()->slug(__('Slug')),
-            Slug::make(__('Slug'), 'slug')->sortable(),
+            Slug::make(__('Slug'), 'slug')->rules('required', 'unique:roles')->sortable(),
 
             Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())->mapWithKeys(function ($policy) {
                 return [
