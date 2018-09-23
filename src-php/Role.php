@@ -62,7 +62,7 @@ class Role extends Resource
             Slug::make(__('Slug'), 'slug')
                 ->rules('required')
                 ->creationRules('unique:roles')
-                ->updateRules('unique:roles, slug, {{ resourceId }}')
+                ->updateRules('unique:roles,slug,{{resourceId}}')
                 ->sortable(),
 
             Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())
