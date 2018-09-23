@@ -59,19 +59,27 @@ class Role extends Resource
 
             TextWithSlug::make(__('Name'), 'name')->sortable()->slug(__('Slug')),
 
-            Slug::make(__('Slug'), 'slug')->rules('required')->creationRules('unique:roles')->updateRules('unique:roles,slug,{{resourceId}}')->sortable(),
+            Slug::make(__('Slug'), 'slug')
+                ->rules('required')
+                ->creationRules('unique:roles')
+                ->updateRules('unique:roles, slug, {{ resourceId }}')
+                ->sortable(),
 
-            Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())->mapWithKeys(function ($policy) {
-                return [
-                    $policy => __($policy),
-                ];
-            })->sort()->toArray()),
+            Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())
+                ->mapWithKeys(function ($policy) {
+                    return [
+                        $policy => __($policy),
+                    ];
+                })
+                ->sort()
+                ->toArray()),
 
             Text::make(__('Users'), function () {
                 return count($this->users);
             })->onlyOnIndex(),
 
-            BelongsToMany::make(__('Users'), 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))->searchable(),
+            BelongsToMany::make(__('Users'), 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))
+                ->searchable(),
         ];
     }
 
