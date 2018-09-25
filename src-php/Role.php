@@ -84,6 +84,16 @@ class Role extends Resource
     }
 
     /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group()
+    {
+        return config('novatoolpermissions.roleResourceGroup', static::$group);
+    }
+
+    /**
      * Get the displayable label of the resource.
      *
      * @return string
