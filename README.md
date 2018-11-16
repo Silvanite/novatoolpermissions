@@ -170,7 +170,7 @@ class AuthServiceProvider extends ServiceProvider
 Finally, specify the access control in your Policy as per the Nova documentation.
 
 ```php
-// app/Policies/Blog.php
+// app/Policies/BlogPolicy.php
 
 public function viewAny($user)
 {
