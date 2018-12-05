@@ -2,7 +2,7 @@
 
 Add Access Control by means of User based Roles and Permissions to your Nova installation. Includes default User and Role Policies which can be managed through your Nova Admin Panel.
 
-![Tool Demo](./preview-demo.gif)
+![Tool Demo](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-demo.gif)
 
 This tool uses the [Silvanite\Brandenburg](https://github.com/Silvanite/brandenburg) package under the hood to manage user roles. Brandenburg is used because it has clear separation of concerns
 
@@ -95,13 +95,13 @@ protected function gate()
 
 Once installed, go ahead and create your first Role. E.g. `Administrator` and assign all permissions to your new Role.
 
-![Create/Edit Roles](./preview-addrole.png)
+![Create/Edit Roles](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-addrole.png)
 
 Finally assign the Administrator Role to your user account.
 
-![Attach Role to User](./preview-attachuser.png)
+![Attach Role to User](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-attachuser.png)
 
-![Roles index with User count](./preview-roles.png)
+![Roles index with User count](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-roles.png)
 
 **Note:** By default, the package allows anyone access to a permission if no single user has access to it. This is to prevent you from locking yourself out of features. As such, it is important to define your primary admin role which has access to all permissions, meaning nobody else has access unless you specifically grant it.
 
