@@ -174,7 +174,7 @@ Finally, specify the access control in your Policy as per the Nova documentation
 
 public function viewAny($user)
 {
-    return Gate::any(['viewBlog', 'manageBlog'], $user, $post);
+    return Gate::any(['viewBlog', 'manageBlog'], $user);
 }
 
 public function view($user, $post)
