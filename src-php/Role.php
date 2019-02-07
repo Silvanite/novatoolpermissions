@@ -113,6 +113,11 @@ class Role extends Resource
         return __('Role');
     }
 
+    public static function availableForNavigation(Request $request)
+    {
+        return $request->user()->can('canSeeRolesInDashboard');
+    }
+
     /**
      * Get the cards available for the request.
      *
