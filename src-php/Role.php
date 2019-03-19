@@ -90,7 +90,7 @@ class Role extends Resource
      */
     public static function group()
     {
-        return config('novatoolpermissions.roleResourceGroup', static::$group);
+        return __(config('novatoolpermissions.roleResourceGroup', static::$group));
     }
 
     /**
