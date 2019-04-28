@@ -3,3 +3,4 @@
 /dist-js/
 .vs
 .idea
+composer.lock
