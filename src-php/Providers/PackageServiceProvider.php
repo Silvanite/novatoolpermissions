@@ -16,6 +16,7 @@ class PackageServiceProvider extends ServiceProvider
     {
         $this->publishConfigs();
         $this->loadTranslations();
+        $this->loadMigrations();
     }
 
     /**
@@ -45,6 +46,15 @@ class PackageServiceProvider extends ServiceProvider
     private function loadTranslations()
     {
         $this->loadJSONTranslationsFrom(__DIR__.'/../Resources/lang', 'novatoolpermissions');
+    }
+
+    private function loadMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
+
+        $this->publishes([
+            __DIR__ . '/../Database/migrations' => base_path('database/migrations')
+        ], 'migrations');
     }
 
     /**

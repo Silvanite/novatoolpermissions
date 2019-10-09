@@ -4,5 +4,6 @@
     "manageRoles": "Manage Roles",
     "assignRoles": "Assign Roles",
     "viewUsers": "View Users",
-    "manageUsers": "Manage Users"
+    "manageUsers": "Manage Users",
+    "canBeGivenPrivateAccess": "Can be given private access"
 }
