@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProtectablesTable extends Migration
+class CreateAccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProtectablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('protectables', function (Blueprint $table) {
+        Schema::create('accesses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('role_ids');
-            $table->nullableMorphs('protectable');
+            $table->json('roles');
+            $table->nullableMorphs('accessible');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProtectablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('protectables');
+        Schema::dropIfExists('accesses');
     }
 }

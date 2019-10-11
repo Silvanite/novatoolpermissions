@@ -16,7 +16,7 @@ class AccessControl
     public static function fields()
     {
         return [
-            Checkboxes::make(__('Roles To Allow Access'), 'roles_with_access')->options(collect(
+            Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(collect(
                     RoleModel::all()->filter(function ($value) {
                         return $value->hasPermission('canBeGivenPrivateAccess');
                     })
@@ -27,7 +27,8 @@ class AccessControl
                     ];
                 })
                 ->sort()
-                ->toArray()),
+                ->toArray())
+                ->withoutTypeCasting(),
         ];
     }
 }
