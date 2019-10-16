@@ -3,6 +3,7 @@
 namespace Silvanite\NovaToolPermissions\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class PackageServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishConfigs();
         $this->loadTranslations();
         $this->loadMigrations();
+        $this->registerGates();
     }
 
     /**
@@ -55,6 +57,20 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/migrations' => base_path('database/migrations')
         ], 'migrations');
+    }
+
+    private function registerGates()
+    {
+        Gate::define('accessContent', function ($user, $access = null) {
+            if ($access === null) {
+                return true;
+            }
+
+            if (!count($access->roles)) {
+                return true;
+            }
+            return $user->roles->pluck('id')->intersect($access->roles)->count();
+        });
     }
 
     /**
