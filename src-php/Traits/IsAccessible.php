@@ -1,8 +1,11 @@
 <?php
+
 namespace Silvanite\NovaToolPermissions\Traits;
+
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Input;
 use Silvanite\NovaToolPermissions\Access;
+
 trait IsAccessible
 {
     public function initializeIsAccessible()
