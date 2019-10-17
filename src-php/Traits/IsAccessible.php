@@ -46,5 +46,9 @@ trait IsAccessible
             $access->roles = $roles;
             return $access->save();
         }
+
+        if ($this->id) {
+            return $this->access()->create(['roles' => $roles]);
+        }
     }
 }

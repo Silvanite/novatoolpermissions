@@ -62,7 +62,7 @@ class PackageServiceProvider extends ServiceProvider
     private function registerGates()
     {
         Gate::define('accessContent', function ($user, $model = null) {
-            if ($model->access === null) {
+            if (optional($model->access) === null) {
                 return true;
             }
 
