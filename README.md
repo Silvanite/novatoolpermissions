@@ -229,12 +229,12 @@ To check if a user has the correct permissions to view your content, add the fol
 public function show(Model $model)
 {
     // ...
-    abort_unless(Gate::allows('accessContent', $model->access), 403);
+    abort_unless(Gate::allows('accessContent', $model), 403);
     // ...
 }
 ```
 
-On your Nova resource, add the AccessControl field:
+On your Nova resource, add the AccessControl field. This will display all roles with the `canBeGivenPrivateAccess` permission. To protect content from being accessed, at least one Role has to be given access to the model, otherwise the resource will be available to everyone.
 
 ```php
 public function fields(Request $request)

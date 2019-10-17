@@ -61,15 +61,15 @@ class PackageServiceProvider extends ServiceProvider
 
     private function registerGates()
     {
-        Gate::define('accessContent', function ($user, $access = null) {
-            if ($access === null) {
+        Gate::define('accessContent', function ($user, $model = null) {
+            if ($model->access === null) {
                 return true;
             }
 
-            if (!count($access->roles)) {
+            if (!count($model->access->roles)) {
                 return true;
             }
-            return $user->roles->pluck('id')->intersect($access->roles)->count();
+            return $user->roles->pluck('id')->intersect($model->access->roles)->count();
         });
     }
 
