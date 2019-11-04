@@ -172,6 +172,8 @@ Finally, specify the access control in your Policy as per the Nova documentation
 ```php
 // app/Policies/BlogPolicy.php
 
+use Illuminate\Support\Facades\Gate;
+
 public function viewAny($user)
 {
     return Gate::any(['viewBlog', 'manageBlog'], $user);
