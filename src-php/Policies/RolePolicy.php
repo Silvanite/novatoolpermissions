@@ -24,7 +24,7 @@ class RolePolicy
         return Gate::any(['viewRoles', 'manageRoles'], $user);
     }
 
-    public function view($user)
+    public function view($user, $model)
     {
         return Gate::any(['viewRoles', 'manageRoles'], $user);
     }
@@ -34,22 +34,22 @@ class RolePolicy
         return $user->can('manageRoles');
     }
 
-    public function update($user)
+    public function update($user, $model)
     {
         return $user->can('manageRoles');
     }
 
-    public function delete($user)
+    public function delete($user, $model)
     {
         return $user->can('manageRoles');
     }
 
-    public function restore($user)
+    public function restore($user, $model)
     {
         return $user->can('manageRoles');
     }
 
-    public function forceDelete($user)
+    public function forceDelete($user, $model)
     {
         return $user->can('manageRoles');
     }
