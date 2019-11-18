@@ -18,7 +18,7 @@ class AccessControl
         return [
             Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(collect(
                     RoleModel::all()->filter(function ($value) {
-                        return $value->hasPermission('canBeGivenPrivateAccess');
+                        return $value->hasPermission('canBeGivenAccess');
                     })
                 )
                 ->mapWithKeys(function ($role) {

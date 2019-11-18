@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Input;
 use Silvanite\NovaToolPermissions\Access;
 
-trait IsAccessible
+trait HasAccessControl
 {
     public function initializeIsAccessible()
     {
@@ -34,7 +34,7 @@ trait IsAccessible
     {
         return $this->morphOne(Access::class, 'accessible');
     }
- 
+
     public function getAccessRolesAttribute()
     {
         return $this->access->roles ?? [];

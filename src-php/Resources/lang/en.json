@@ -5,6 +5,6 @@
     "assignRoles": "Assign Roles",
     "viewUsers": "View Users",
     "manageUsers": "Manage Users",
-    "canBeGivenPrivateAccess": "Can be given private access",
+    "canBeGivenAccess": "Can be given access",
     "accessContent": "Access Content"
 }
