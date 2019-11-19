@@ -221,7 +221,7 @@ This example is a super-simple implementation. You can define your Gates as in a
 
 ## Access Control
 
-Sometimes you might want to prevent some users from access content, but not others. To achieve this, use the included `HasAccessControl.php` trait on your model.
+Sometimes you might want to prevent some users from accessing content, but not others. To achieve this, use the included `HasAccessControl.php` trait on your model.
 
 To check if a user has the correct permissions to view your content, add the following somewhere in your controller methods (Replacing 'Model' with your desired model.):
 

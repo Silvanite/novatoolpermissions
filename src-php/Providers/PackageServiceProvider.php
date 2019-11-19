@@ -18,7 +18,6 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishConfigs();
         $this->loadTranslations();
         $this->loadMigrations();
-        $this->registerGates();
     }
 
     /**
@@ -57,20 +56,6 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/migrations' => base_path('database/migrations')
         ], 'migrations');
-    }
-
-    private function registerGates()
-    {
-        Gate::define('accessContent', function ($user, $model = null) {
-            if (optional($model->access) === null) {
-                return true;
-            }
-
-            if (!count($model->access->roles)) {
-                return true;
-            }
-            return $user->roles->pluck('id')->intersect($model->access->roles)->count();
-        });
     }
 
     /**

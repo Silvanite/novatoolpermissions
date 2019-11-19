@@ -15,13 +15,17 @@ class AccessControl
 
     public static function fields()
     {
+        $options = collect(RoleModel::all()->filter(function ($value) {
+            return $value->hasPermission('canBeGivenAccess');
+        }));
+
+        if (!$options->count()) {
+            return [];
+        }
+
         return [
-            Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(collect(
-                    RoleModel::all()->filter(function ($value) {
-                        return $value->hasPermission('canBeGivenAccess');
-                    })
-                )
-                ->mapWithKeys(function ($role) {
+            Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(
+                $options->mapWithKeys(function ($role) {
                     return [
                         $role->id => __($role->name),
                     ];
