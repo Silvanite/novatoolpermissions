@@ -221,6 +221,26 @@ And add your labels to your translations to keep everything tidy.
 
 This example is a super-simple implementation. You can define your Gates as in any standard Laravel Application and can simply add the additional checks to validate them against your assigned Roles and Permissions.
 
+## Access Control
+
+Sometimes you might want to prevent some users from accessing content, but not others. To achieve this, use the included `HasAccessControl.php` trait on your model.
+
+To check if a user has the correct permissions to view your content, either load the `AccessControlServiceProvider` to register the `accessControl` gate globally. Or include the `AccessControlGate` trait on your models policy.
+
+
+On your Nova resource, add the AccessControl field. This will display all roles with the `canBeGivenAccess` permission. To protect content from being accessed, at least one Role has to be given access to the model, otherwise the resource will be available to everyone.
+
+```php
+public function fields(Request $request)
+{
+    return [
+        // ...
+        AccessControl::make(),
+        // ...
+    ]
+}
+```
+
 ## Support
 
 If you require any support please contact me on [Twitter](https://twitter.com/m2de_io) or open an issue on this repository.
