@@ -223,16 +223,8 @@ This example is a super-simple implementation. You can define your Gates as in a
 
 Sometimes you might want to prevent some users from accessing content, but not others. To achieve this, use the included `HasAccessControl.php` trait on your model.
 
-To check if a user has the correct permissions to view your content, add the following somewhere in your controller methods (Replacing 'Model' with your desired model.):
+To check if a user has the correct permissions to view your content, either load the `AccessControlServiceProvider` to register the `accessControl` gate globally. Or include the `AccessControlGate` trait on your models policy.
 
-```php
-public function show(Model $model)
-{
-    // ...
-    abort_unless(Gate::allows('accessContent', $model), 403);
-    // ...
-}
-```
 
 On your Nova resource, add the AccessControl field. This will display all roles with the `canBeGivenAccess` permission. To protect content from being accessed, at least one Role has to be given access to the model, otherwise the resource will be available to everyone.
 
