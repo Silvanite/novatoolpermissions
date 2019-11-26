@@ -3,7 +3,7 @@
 namespace Silvanite\NovaToolPermissions\Traits;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Silvanite\NovaToolPermissions\Access;
 
 trait HasAccessControl
@@ -20,7 +20,7 @@ trait HasAccessControl
         parent::boot();
         static::created(function ($model) {
             $model->access()
-                ->create(['roles' => Arr::wrap(Input::get('access_roles', []))]);
+                ->create(['roles' => Arr::wrap(Request::get('access_roles', []))]);
         });
         static::deleting(function ($model) {
             if ($model->access) {
