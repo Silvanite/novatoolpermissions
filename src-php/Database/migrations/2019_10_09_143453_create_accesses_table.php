@@ -15,7 +15,7 @@ class CreateAccessesTable extends Migration
     {
         Schema::create('accesses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('roles');
+            $table->text('roles');
             $table->nullableMorphs('accessible');
             $table->timestamps();
         });
