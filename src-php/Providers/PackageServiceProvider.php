@@ -35,10 +35,11 @@ class PackageServiceProvider extends ServiceProvider
 
     /**
      * Publish configuration file.
-	 *
+     *
      * @return void
      */
-    private function publishConfigs() {
+    private function publishConfigs()
+    {
         $this->publishes([
             $this->getConfigsPath() => config_path('novatoolpermissions.php'),
         ], 'config');

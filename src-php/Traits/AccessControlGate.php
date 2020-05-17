@@ -1,8 +1,10 @@
 <?php
 
+namespace Silvanite\NovaToolPermissions\Traits;
+
 trait AccessControlGate
 {
-    public function accessContent($user = null, $model)
+    public function accessContent($user = null, $model = null)
     {
         if ($model->access === null) {
             return true;
