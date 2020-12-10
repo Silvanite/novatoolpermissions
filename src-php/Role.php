@@ -40,10 +40,6 @@ class Role extends Resource
         'name',
     ];
 
-    public static $with = [
-        'users',
-    ];
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -73,7 +69,7 @@ class Role extends Resource
                 ->toArray()),
 
             Text::make(__('Users'), function () {
-                return count($this->users);
+                return $this->users()->count();
             })->onlyOnIndex(),
 
             BelongsToMany::make(__('Users'), 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))
