@@ -77,7 +77,7 @@ public function fields(Request $request)
 }
 ```
 
-If you are not using the defaul `App\Nova\User` Resource you can customise this by publishing the `novatoolpermissions config and setting your User resource model.
+If you are not using the default `App\Nova\User` Resource you can customise this by publishing the `novatoolpermissions config and setting your User resource model.
 
 ```sh
 php artisan vendor:publish --provider="Silvanite\NovaToolPermissions\Providers\PackageServiceProvider"
