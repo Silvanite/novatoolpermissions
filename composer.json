@@ -25,11 +25,11 @@
     "php": ">=7.4",
     "laravel/framework": ">=8.0",
     "silvanite/brandenburg": "^1.0",
-    "silvanite/novafieldcheckboxes": "^1.0",
-    "laravel/nova": "^4.1"
+    "silvanite/novafieldcheckboxes": "dev-nova-4"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": ">=3.1"
+    "squizlabs/php_codesniffer": ">=3.1",
+    "laravel/nova": "^4.1"
   },
   "autoload": {
     "psr-4": {
@@ -40,6 +40,10 @@
     {
       "type": "composer",
       "url": "https://nova.laravel.com"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/boxraiser/novafieldcheckboxes"
     }
   ],
   "extra": {
