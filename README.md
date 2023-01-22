@@ -14,6 +14,10 @@ and
 
 As a result, you won't see any *Permissions* resource. The *Roles* resource will get the permissions from the Gates defined in your code.
 
+## Package maintenance
+
+Unfortunately I am no longer actively working in the Laravel ecosystem and as such am unable to maintian this package. If anyone would like to take over the maintenance of the package please get in touch (open an issue or contact me on [Twitter](https://twitter.com/m2de_io)).
+
 ## Installation
 
 Install the tool through composer
@@ -226,7 +230,6 @@ This example is a super-simple implementation. You can define your Gates as in a
 Sometimes you might want to prevent some users from accessing content, but not others. To achieve this, use the included `HasAccessControl.php` trait on your model.
 
 To check if a user has the correct permissions to view your content, either load the `AccessControlServiceProvider` to register the `accessControl` gate globally. Or include the `AccessControlGate` trait on your models policy.
-
 
 On your Nova resource, add the AccessControl field. This will display all roles with the `canBeGivenAccess` permission. To protect content from being accessed, at least one Role has to be given access to the model, otherwise the resource will be available to everyone.
 

@@ -2,9 +2,9 @@
 
 namespace Silvanite\NovaToolPermissions\Providers;
 
-use AccessControlGate;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Silvanite\NovaToolPermissions\Traits\AccessControlGate;
 
 class AccessControlServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class AccessControlServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Gate::define('accessControl', function ($user = null, $model) {
+        Gate::define('accessControl', function ($user = null, $model = null) {
             $this->accessContent($user, $model);
         });
     }

@@ -58,4 +58,9 @@ class RolePolicy
     {
         return Gate::any(['assignRoles', 'manageRoles'], $user);
     }
+    
+    public function detachAnyUser($user, $model)
+    {
+        return $user->can('manageRoles');
+    }
 }
